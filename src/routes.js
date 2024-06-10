@@ -31,7 +31,7 @@ const Stack = createStackNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator sceneContainerStyle={{borderWidth: 0}}>
+    <Tab.Navigator screenOptions={{tabBarStyle:{borderWidth: 0}}}>
       <Tab.Screen
         name="Perfil"
         component={Perfil}

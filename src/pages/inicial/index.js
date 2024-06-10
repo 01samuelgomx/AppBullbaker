@@ -48,7 +48,11 @@ export default class App extends React.Component {
   _renderItem = ({ item, index }) => {
     if (index === slides.length - 1) {
       return (
+<<<<<<< HEAD
         <View style={styles.InicialView}>
+=======
+        <View style={styles.dashView}>
+>>>>>>> 2830ee5c8e34be941bb6d28dd67dda09e78c2439
           <Image source={item.image} style={styles.image} />
           <Text style={styles.tittleDark}>{item.title}</Text>
           <View style={{ flexDirection: 'column' }}>
@@ -75,7 +79,11 @@ export default class App extends React.Component {
       );
     } else {
       return (
+<<<<<<< HEAD
         <View style={styles.InicialView}>
+=======
+        <View style={styles.dashView}>
+>>>>>>> 2830ee5c8e34be941bb6d28dd67dda09e78c2439
           <Image source={item.image} style={styles.image} />
           <Text style={styles.titleText}>{item.title}</Text>
           <Text style={styles.descriptionText}>{item.text}</Text>

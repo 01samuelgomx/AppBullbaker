@@ -135,7 +135,6 @@ export const styles = {
     backgroundRepeat: "no-repeat",
     borderRadius: 20,
   },
-
   bannerItem: {
     display: "flex",
     width: 220,

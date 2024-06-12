@@ -15,11 +15,7 @@ export default function Login({ navigation }) {
     <ScrollView contentContainerStyle={styles.dashView}>
 
           <Image source={require("./../../img/person/login.png")} />
-<<<<<<< HEAD
           <Text style={styles.titleText}>Faça Login!</Text>
-=======
-          <Text style={styles.tittleDark}>Faça Login!</Text>
->>>>>>> 2830ee5c8e34be941bb6d28dd67dda09e78c2439
 
           <View style={{ flexDirection: "column" }}>
             <TextInput placeholder="Email:" style={styles.input} />

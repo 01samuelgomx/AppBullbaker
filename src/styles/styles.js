@@ -2,15 +2,21 @@ export const styles = {
   
   // -------------------
   // Carrossel
-  InicialView: {
+  inicialView: {
     flexGrow: 1,
+    flex: 1,
     justifyContent: 'center',
     paddingTop: 95,
     alignItems: 'center',
   },
-  dashView: {
+  Container: {
     flex: 1,
     flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dashView: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -397,11 +403,7 @@ export const styles = {
   // ------------------------------------
   // Produtos START
   // ------------------------------------
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   blurContainer: {
     flex: 1,
     justifyContent: 'center',

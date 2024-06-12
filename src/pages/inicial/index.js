@@ -48,45 +48,41 @@ export default class App extends React.Component {
   _renderItem = ({ item, index }) => {
     if (index === slides.length - 1) {
       return (
-<<<<<<< HEAD
-        <View style={styles.InicialView}>
-=======
-        <View style={styles.dashView}>
->>>>>>> 2830ee5c8e34be941bb6d28dd67dda09e78c2439
-          <Image source={item.image} style={styles.image} />
-          <Text style={styles.tittleDark}>{item.title}</Text>
-          <View style={{ flexDirection: 'column' }}>
-            <TextInput placeholder="Email:" style={styles.input} />
-            <TextInput
-              placeholder="Senha:"
-              secureTextEntry={true}
-              style={styles.input}
+        <View style={styles.inicialView} key={item.key}>
+          <View style={styles.Container}>
+            <Image source={item.image} style={styles.image} />
+            <Text style={styles.tittleDark}>{item.title}</Text>
+            <View style={{ flexDirection: 'column' }}>
+              <TextInput placeholder="Email:" style={styles.input} />
+              <TextInput
+                placeholder="Senha:"
+                secureTextEntry={true}
+                style={styles.input}
+              />
+            </View>
+            <CustomButton
+              title="Entrar"
+              onPress={() => this.props.navigation.navigate('Home')}
+              buttonStyle={styles.enterBtn}
+              textStyle={{ color: '#fff', fontWeight: '500' }}
             />
+            <TouchableOpacity
+              style={{ marginTop: 10 }}
+              onPress={() => this.props.navigation.navigate('EsqSenha')}
+            >
+              <Text style={{ color: '#361F08', fontWeight: '500' }}>Esqueceu a senha?</Text>
+            </TouchableOpacity>
           </View>
-          <CustomButton
-            title="Entrar"
-            onPress={() => this.props.navigation.navigate('Home')}
-            buttonStyle={styles.enterBtn}
-            textStyle={{ color: '#fff', fontWeight: '500' }}
-          />
-          <TouchableOpacity
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate('EsqSenha')}
-          >
-            <Text style={{ color: '#361F08', fontWeight: '500' }}>Esqueceu a senha?</Text>
-          </TouchableOpacity>
         </View>
       );
     } else {
       return (
-<<<<<<< HEAD
-        <View style={styles.InicialView}>
-=======
-        <View style={styles.dashView}>
->>>>>>> 2830ee5c8e34be941bb6d28dd67dda09e78c2439
-          <Image source={item.image} style={styles.image} />
-          <Text style={styles.titleText}>{item.title}</Text>
-          <Text style={styles.descriptionText}>{item.text}</Text>
+        <View style={styles.inicialView} key={item.key}>
+          <View style={styles.Container}>
+            <Image source={item.image} style={styles.image} />
+            <Text style={styles.titleText}>{item.title}</Text>
+            <Text style={styles.descriptionText}>{item.text}</Text>
+          </View>
         </View>
       );
     }

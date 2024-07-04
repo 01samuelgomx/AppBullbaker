@@ -120,7 +120,7 @@ export default function Perfil({ navigation, route }) {
       <View style={styles.header}>
 
       <View style={styles.btnPerfil}>
-      <Entypo name="book" size={24} color="black" />
+      <Egintypo name="book" size={24} color="black" />
       <View style={styles.textperfil}>
       <Text style={{fontWeight: '700'}}>Nome do Curso</Text>
         {nomeCurso}

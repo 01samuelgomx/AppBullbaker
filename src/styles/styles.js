@@ -285,6 +285,11 @@ export const styles = {
     paddingTop: 90,
     alignItems: "center",
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   AcessoAula: {
     boxSizing: "border-box",
     overFlow: "hidden",

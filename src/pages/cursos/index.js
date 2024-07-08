@@ -41,13 +41,13 @@ export default function Cursos({ navigation }) {
         <Image source={require("../../img/wave2.png")} style={styles.waveImage} />
 
         <View style={styles.header}>
-          <Image source={require("./../../img/logo.png")} style={styles.logoHome} />
+          <Image source={require("../../img/logo.png")} style={styles.logoHome} />
           <View style={styles.headerItem}>
             <TouchableOpacity style={styles.profile} onPress={() => navigation.navigate("Perfil")}>
               {/* <Image style={styles.logoCursos} source={require("./../../img/icons/user.png")} /> */}
             </TouchableOpacity>
             <TouchableOpacity style={styles.darkmode} onPress={() => navigation.navigate("profile")}>
-              <Image style={styles.darkmodeIcon} source={require("./../../img/icons/darkMode.png")} />
+              <Image style={styles.darkmodeIcon} source={require("../../img/icons/darkMode.png")} />
             </TouchableOpacity>
           </View>
         </View>
@@ -63,32 +63,31 @@ export default function Cursos({ navigation }) {
           </ImageBackground>
         </View>
 
-
         {cursos.map((curso) => (
           <View key={curso.idCurso} style={styles.containerCurso}>
             <Image source={{ uri: curso.fotoCurso }} style={styles.cursoImage} />
             <View style={styles.infoCursos}>
               <Text style={styles.cursoTittle}>{curso.nomeCurso}</Text>
               <Text style={styles.cursoText}>{curso.descricaoCurso}</Text>
+
               <View style={styles.btnCurso}>
                 <CustomButton
                   title="Saiba Mais"
-                  onPress={() => navigation.navigate("aula1", { id: curso.idCurso })}
+                  onPress={() => navigation.navigate("SaibaMais", { idCurso: curso.idCurso })}
                   buttonStyle={styles.btnCursoUm}
                   textStyle={{ color: "#fff", fontWeight: "500" }}
                 />
                 <CustomButton
                   title="Assistir aula"
-                  onPress={() => navigation.navigate("AulaDetalhe", { id: curso.idCurso })}
+                  onPress={() => navigation.navigate("Aula", { idCurso: curso.idCurso })}
                   buttonStyle={styles.btnCursoDois}
                   textStyle={{ color: "#fff", fontWeight: "500" }}
                 />
               </View>
+              
             </View>
           </View>
         ))}
-
-
       </ScrollView>
     </View>
   );

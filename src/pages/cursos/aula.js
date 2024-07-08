@@ -7,23 +7,23 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { styles } from "../../../styles/styles";
+import { styles } from "../../styles/styles";
 import { FontAwesome5 } from "@expo/vector-icons"; // Correção na importação do ícone
 
-export default function Aula1({ navigation }) {
-  const ImgBack = require("../../../img/banner/aula.png");
+export default function Aula({ navigation }) {
+  const ImgBack = require("../../img/banner/aula.png");
 
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <View style={{ flexGrow: 1, alignItems: "center" }}>
         <Image
-          source={require("./../../../img/wave3.png")}
+          source={require("../../img/wave3.png")}
           style={styles.waveImage}
         />
 
         <View style={styles.header}>
           <Image
-            source={require("./../../../img/logo.png")}
+            source={require("../../img/logo.png")}
             style={styles.logo}
           />
         </View>
@@ -51,7 +51,7 @@ export default function Aula1({ navigation }) {
         <View style={styles.contVideo}>
           <View style={styles.video}>
             <Image
-              source={require("../../../img/aula/aula1.png")}
+              source={require("../../img/aula/aula1.png")}
               style={styles.waveImage}
             />
 
@@ -62,7 +62,7 @@ export default function Aula1({ navigation }) {
           </View>
           <View style={styles.video}>
             <Image
-              source={require("../../../img/aula/aula1.png")}
+              source={require("../../img/aula/aula1.png")}
               style={styles.waveImage}
             />
 
@@ -73,7 +73,7 @@ export default function Aula1({ navigation }) {
           </View>
           <View style={styles.video}>
             <Image
-              source={require("../../../img/aula/aula1.png")}
+              source={require("../../img/aula/aula1.png")}
               style={styles.waveImage}
             />
 
@@ -85,7 +85,7 @@ export default function Aula1({ navigation }) {
 
           <View style={styles.video}>
             <Image
-              source={require("../../../img/aula/aula1.png")}
+              source={require("../../img/aula/aula1.png")}
               style={styles.waveImage}
             />
 

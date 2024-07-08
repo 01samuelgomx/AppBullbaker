@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Button,View, Image,Text, TouchableOpacity} from "react-native";
+import { ScrollView,View, Image,Text, TouchableOpacity} from "react-native";
 import { styles } from "../../styles/styles";
 
 const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
@@ -13,30 +13,40 @@ const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
 export default function AreaAluno({ navigation }) {
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
-      <Image
-        source={require("./../../img/wave3.png")}
-        style={styles.waveImage}
-      />
+    <View style={{ flexGrow: 1,alignItems: "center"}}>
+    
+    <Image
+       source={require("../../img/wave3.png")}
+      style={styles.waveImage}/>
 
-      <View style={styles.header}>
-        <Image source={require("./../../img/logo.png")} style={styles.logoHome} />
+<View style={styles.header}>
+          <Image
+            source={require("./../../img/logo.png")}
+            style={styles.logoHome}
+          />
+          <View style={styles.headerItem}>
+            <TouchableOpacity
+              style={styles.profile}
+              onPress={() => navigation.navigate("Perfil")}
+            >
+              {/* <Image
+              style={styles.logoCursos}
+              source={require("./../../img/icons/user.png")}
+            /> */}
+            </TouchableOpacity>
 
-        <View style={styles.headerItem}>
-          <TouchableOpacity
-            style={styles.profile}
-            onPress={() => navigation.navigate("profile")}
-          >
-            
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.darkmode}
-            onPress={() => navigation.navigate("profile")}
-          >
-           
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.darkmode}
+              onPress={() => navigation.navigate("profile")}
+            >
+              <Image
+                style={styles.darkmodeIcon}
+                source={require("./../../img/icons/darkMode.png")}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+
 
       <View style={styles.contAlunoBtn}>
 
@@ -80,6 +90,7 @@ export default function AreaAluno({ navigation }) {
               </View>
             </TouchableOpacity>
 
+        </View>
         </View>
     </ScrollView>
   );

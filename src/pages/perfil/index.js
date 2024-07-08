@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
-import {
-  ScrollView,
-  Button,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground, StyleSheet,} from "react-native";
 import { styles } from "../../styles/styles";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// ------------------------------------
+
 // Icons
 import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome6 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { ImageBackground, StyleSheet } from "react-native-web";
-import { Octicons } from '@expo/vector-icons';
 import { Entypo } from "@expo/vector-icons";
 
-export default function Perfil({ navigation, route }) {
+
+export default function EditPerfil({ navigation, route }) {
   const { idAluno } = route.params || {};
 
   console.log("Cód Aluno: ", idAluno);
@@ -51,7 +44,6 @@ export default function Perfil({ navigation, route }) {
             },
           }
         );
-
         setNomeAluno(resposta.data.dadosAluno.nome);
         setEmailAluno(resposta.data.dadosAluno.email);
         setTelefoneAluno(resposta.data.dadosAluno.telefone);
@@ -64,7 +56,9 @@ export default function Perfil({ navigation, route }) {
         setObjetivo(resposta.data.dadosAluno.objetivo);
         setstatusAluno(resposta.data.dadosAluno.status);
         setfotoAluno(resposta.data.dadosAluno.foto);
-      } catch (error) {
+      } 
+
+      catch (error) {
         console.log("Erro ao procurar dados do aluno.", error);
       }
     };
@@ -77,111 +71,87 @@ export default function Perfil({ navigation, route }) {
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <ImageBackground source={require("../../img/banner/perfil.png")}>
-        <View style={styles.header}>
+        <View style={styles.headerEdit}>
           <Image
-            source={require("../../img/icons/profile.png")}
-            style={styles.profileImage}
-          />
-
-          <Text style={styles.tittle}>
-            <FontAwesome5 name="user-alt" size={16} color="white" />
-            {nomeAluno}
-          </Text>
-          <Text style={styles.tittle}>
-            <MaterialCommunityIcons name="email" size={16} color="white" />
-            {emailAluno}
-          </Text>
-          <Text style={styles.tittle}>
-            <FontAwesome name="phone" size={18} color="white" />
-            {telefoneAluno}
-          </Text>
+            source={require("../../img/icons/perfil.png")}
+            style={styles.perfilImage}/>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("Cursos")}
-            style={styles.btnCursoUm}
-          >
+            onPress={() => navigation.navigate("EditPerfil")}
+            style={styles.btnCursoUm}>
             Editar
           </TouchableOpacity>
         </View>
       </ImageBackground>
 
       <View style={styles.perfilDados}>
-        <View style={{ flexDirection: "column",textAlign:'center' }}>
+        <View style={{ flexDirection: "column", textAlign: "center" }}>
           <Text style={styles.perfiltittle}>Confira já</Text>
           <Text style={styles.perfilText}>Todos seus dados aqui</Text>
         </View>
 
-        <View style={{ flexDirection: "column",textAlign:'center' }}>
+        <View style={{ flexDirection: "column", textAlign: "center" }}>
           <Text style={styles.perfiltittle}>Faça Edição</Text>
           <Text style={styles.perfilText}>Altere suas informações</Text>
         </View>
       </View>
 
-      <View style={styles.header}>
+      <View style={styles.ContainerPerfil}>
 
-      <View style={styles.btnPerfil}>
-      <Egintypo name="book" size={24} color="black" />
-      <View style={styles.textperfil}>
-      <Text style={{fontWeight: '700'}}>Nome do Curso</Text>
-        {nomeCurso}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="user" size={24} color="black" />Nome</Text>
+          <View style={styles.inputPerfil}>{nomeAluno}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <Octicons name="number" size={24} color="black" />
-      <View style={styles.textperfil}>
-      <Text style={{fontWeight: '700'}}>Identificador Curso</Text>
-        {idCurso}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><MaterialIcons name="email" size={24} color="black" />Email</Text>
+          <View style={styles.inputPerfil}>{emailAluno}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <Entypo name="calendar" size={24} color="black" />
-      <View style={styles.textperfil}>
-        <Text style={{fontWeight: '700'}}>Data de cadastro</Text>
-        {dataCadAluno}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="phone" size={24} color="black" />Telefone</Text>
+          <View style={styles.inputPerfil}>{telefoneAluno}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <Entypo name="calendar" size={24} color="black" />
-      <View style={styles.textperfil}>
-      <Text style={{fontWeight: '700'}}>Data de Nascimento</Text>
-        {dataDeNascimento}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}>
+          <Entypo name="book" size={24} color="black" />Nome do Curso
+          </Text>
+          <View style={styles.inputPerfil}>{nomeCurso}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <FontAwesome name="plane" size={24} color="black" />
-      <View style={styles.textperfil}>
-        <Text style={{fontWeight: '700'}}> Seu Estado</Text>
-        {estadoAluno}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}>
+          <FontAwesome6 name="calendar-check" size={24} color="black" />Data de cadastro
+          </Text>
+          <View style={styles.inputPerfil}>{dataCadAluno}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <Entypo name="cake" size={24} color="black" />
-      <View style={styles.textperfil}>
-        <Text style={{fontWeight: '700'}}> Nível de habilidade</Text>
-        {nivelHabilidade}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}>
+          <Ionicons name="calendar-clear" size={24} color="black" />Data de Nascimento
+          </Text>
+          <View style={styles.inputPerfil}>{dataDeNascimento}</View>
+        </View>
 
-      <View style={styles.btnPerfil}>
-      <FontAwesome name="lightbulb-o" size={24} color="black" />
-      <View style={styles.textperfil}>
-        <Text style={{fontWeight: '700'}}> Seu Objetivo</Text>
-        {objetivo}
-      </View>
-      <MaterialIcons name="arrow-right" size={60} color="black" />
-    </View>
-      
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="plane" size={24} color="black" /> Seu Estado</Text>
+          <View style={styles.inputPerfil}>{estadoAluno}</View>
+        </View>
+
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}>
+          <Entypo name="cake" size={24} color="black" />Nível de habilidade
+          </Text>
+          <View style={styles.inputPerfil}>{nivelHabilidade}</View>
+        </View>
+
+        <View style={styles.contInput}>
+          <Text style={{ fontWeight: "700", marginTop: 14 }}>
+          <FontAwesome5 name="lightbulb" size={24} color="black" />Seu Objetivo
+          </Text>
+          <View style={styles.inputPerfil}>{objetivo}</View>
+        </View>
       </View>
     </ScrollView>
   );

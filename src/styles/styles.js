@@ -1,19 +1,19 @@
 export const styles = {
   // -------------------
   // Carrossel
-  homeContainer: { 
-    flex: 1, 
-    backgroundColor: "#fff" 
+  homeContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
   },
   scrollViewContent: {
     flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  headerContainer: { 
-    alignItems: "center", 
-    width: "100%", 
-    marginVertical: 20 
+  headerContainer: {
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 20,
   },
 
   inicialView: {
@@ -127,9 +127,6 @@ export const styles = {
     borderColor: "#2D465C",
   },
 
-  bannerhome: {
-    width: "100%",
-  },
   // ------------------------------------
   // Inicial END
   // ------------------------------------
@@ -137,9 +134,9 @@ export const styles = {
   // Home START
   // ------------------------------------
   header: {
+    justifyContent: "center",
     padding: 20,
     flexDirection: "row",
-    backgroundColor: "#f0f0f0",
   },
   headerItem: {
     justifyContent: "center",
@@ -150,8 +147,6 @@ export const styles = {
   },
   // ------------------------------------
   banners: {
-    display: "flex",
-    flexDirection: "column",
     width: "100%",
     height: 150,
     justifyContent: "center",
@@ -163,7 +158,6 @@ export const styles = {
     borderRadius: 20,
   },
   bannerItem: {
-    display: "flex",
     width: 220,
     height: 120,
     justifyContent: "center",
@@ -175,7 +169,6 @@ export const styles = {
     backgroundColor: "#fff",
   },
   bannerText: {
-    flexDirection: 'column',
     fontSize: 22,
     fontWeight: "700",
   },
@@ -282,12 +275,6 @@ export const styles = {
     marginBottom: 55,
   },
 
-  logoHome: {
-    width: "40%",
-    height: "75%",
-    borderRadius: 10,
-    marginTop: 90,
-  },
   // ------------------------------------
   // Home END
   // ------------------------------------
@@ -295,7 +282,7 @@ export const styles = {
   // Area Aluno START
   // ------------------------------------
   contAlunoBtn: {
-    paddingTop: 20,
+    paddingTop: 90,
     alignItems: "center",
   },
   AcessoAula: {
@@ -366,17 +353,22 @@ export const styles = {
     fontWeight: "700",
     textAlign: "left",
   },
+  cursoImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+  },
   cursoText: {
     fontSize: 9,
     textAlign: "left",
   },
   btnCursoUm: {
+    justifyContent: "center",
     display: "flex",
     alignItems: "center",
     width: 100,
     marginTop: 10,
     padding: 3,
-    alignItems: "center",
     backgroundColor: "#3F4D42",
     color: "#fff",
     borderRadius: 15,
@@ -402,6 +394,7 @@ export const styles = {
   // ------------------------------------
   containerCurso: {
     flexDirection: "row",
+    marginTop: 20,
     padding: 15,
   },
   descriContainer: {
@@ -418,7 +411,7 @@ export const styles = {
   },
   btnCurso: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginTop: 10,
   },
   titleCurso: {
@@ -554,61 +547,71 @@ export const styles = {
   profile: {
     flexDirection: "column",
   },
-  btnPerfil: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '65%',
-    padding: 10,
-    borderBottomWidth: 1,
+  perfilImage:{
+    width: 100,
+    height: 100,
+    borderRadius: 100,
   },
   textperfil: {
     flexDirection: "column",
-    textAlign: 'center',
+    textAlign: "center",
     padding: 2,
   },
   perfiltittle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 14,
     padding: 1,
     fontWeight: "600",
     color: "#fff",
   },
   perfilText: {
-    textAlign: 'center',
+    textAlign: "center",
     color: "#fff",
     fontSize: 12,
     fontWeight: "0",
   },
-
-  perfilDados:{
-      marginTop: 10,
-      backgroundColor:'#462F19',
-      color: "#fff",
-      justifyContent: 'center',
-      justifyContent: 'space-evenly',
-      flexDirection: 'row',
-      borderBottomWidth: 4,
-      borderColor: '#000',
-      borderTopWidth: 4,
-      borderRadius: 12, 
-      padding: 5,
+  perfilDados: {
+    marginTop: 10,
+    backgroundColor: "#462F19",
+    color: "#fff",
+    justifyContent: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+    borderBottomWidth: 4,
+    borderColor: "#382513",
+    borderRadius: 12,
+    padding: 5,
   },
-  header: {
+  headerEdit: {
     flex: 1,
-    marginTop: 65,
+    textAlign: "left",
+    marginTop: 95,
     justifyContent: "center",
     alignItems: "center",
     height: 100,
   },
-
-  logoPerfil: {
-    width: "40%",
-    height: "75%",
-    borderRadius: 10,
+  ContainerPerfil: {
+    flex: 1,
+    textAlign: "left",
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 100,
   },
-
-
+  inputPerfil: {
+    borderWidth: 1,
+    textAlign: "left",
+    borderRadius: 15,
+    borderColor: "#ccc",
+    padding: 10,
+    width: "102%",
+  },
+  contInput: {
+    textAlign: "left",
+    borderColor: "#ccc",
+    padding: 10,
+    width: "80%",
+  },
 
   // ------------------------------------
   // Perfil END

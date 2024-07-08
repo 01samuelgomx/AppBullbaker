@@ -14,45 +14,44 @@ export default function Produtos({ navigation }) {
   const ImgBack = require("../../img/banner/pagamento.png");
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
-     <View>
-      <Image
-        source={require("../../img/wave2.png")}
-        style={styles.waveImage}
-      />
+    <View style={{ flexGrow: 1,alignItems: "center"}}>
+    
+    <Image
+       source={require("../../img/wave2.png")}
+      style={styles.waveImage}/>
 
-      <View style={styles.header}>
-        <Image source={require("./../../img/logo.png")} style={styles.logoHome} />
-
-        <View style={styles.headerItem}>
-          <TouchableOpacity
-            style={styles.profile}
-            onPress={() => navigation.navigate("Perfil")}
-          >
-            <Image
-              style={styles.profileIcon}
+<View style={styles.header}>
+          <Image
+            source={require("./../../img/logo.png")}
+            style={styles.logoHome}
+          />
+          <View style={styles.headerItem}>
+            <TouchableOpacity
+              style={styles.profile}
+              onPress={() => navigation.navigate("Perfil")}
+            >
+              {/* <Image
+              style={styles.logoCursos}
               source={require("./../../img/icons/user.png")}
-            />
-          </TouchableOpacity>
+            /> */}
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.darkmode}
-            onPress={() => navigation.navigate("profile")}
-          >
-            <Image
-              style={styles.darkmodeIcon}
-              source={require("./../../img/icons/darkMode.png")}
-            />
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.darkmode}
+              onPress={() => navigation.navigate("profile")}
+            >
+              <Image
+                style={styles.darkmodeIcon}
+                source={require("./../../img/icons/darkMode.png")}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.banners}>
-        <ImageBackground
-          source={ImgBack}
-          style={{ width: "100%", flex: 1,alignItems: "center", justifyContent: "center",}}>
+        <View style={styles.banners}>
+        <ImageBackground source={ImgBack} style={{ width: "100%", flex: 1, alignItems: "center", justifyContent: "center",borderRadius: 15 }}>
         </ImageBackground>
       </View>
-
 
         <View style={styles.produtos}>
 

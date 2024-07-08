@@ -13,7 +13,10 @@ import EsqSenha from "./pages/esqSenha";
 import Home from "./pages/home";
 import AreaAluno from "./pages/areaAluno";
 import Produtos from './pages/produtos';
+//----------------------------
+// Perfil
 import Perfil from './pages/perfil';
+import EditPerfil from './pages/perfil/edit';
 //----------------------------
 // Cursos
 import Cursos from "./pages/cursos";
@@ -47,6 +50,17 @@ function MyTabs({ route }) {
             <Ionicons name="settings" size={24} color="black" />
             ),
             headerShown: false,
+          }} />
+
+      <Tab.Screen
+        name="EditPerfil"
+        component={EditPerfil}
+        initialParams={{ idAluno: route.params.idAluno }}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="settings" size={24} color="black" />
+            ),
+            headerShown: false, tabBarButton: () => null
           }} />
             
             <Tab.Screen
@@ -204,6 +218,7 @@ export default function Routes() {
       <Stack.Screen name="Aula3" component={Aula3} options={{ headerShown: false }} />
       {/* ------------------------------------- */}
       <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
+      <Stack.Screen name="EditPerfil" component={EditPerfil} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

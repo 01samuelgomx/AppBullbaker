@@ -364,7 +364,7 @@ export const styles = {
     borderRadius: 20,
   },
   cursoText: {
-    fontSize: 9,
+    fontSize: 12,
     textAlign: "left",
   },
   btnCursoUm: {
@@ -523,6 +523,12 @@ export const styles = {
   // ------------------------------------
   // Aula START
   // ------------------------------------
+
+  aulaImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
+  },
   contVideo: {
     flex: 1,
     marginTop: 30,

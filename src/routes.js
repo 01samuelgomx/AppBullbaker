@@ -21,9 +21,9 @@ import EditPerfil from "./pages/perfil/edit";
 // Cursos
 import Cursos from "./pages/cursos";
 import SaibaMais from "./pages/cursos/saibaMais";
-import Aula from "./pages/cursos/aula";
 //----------------------------
 // Aula
+import Aula from "./pages/aulas";
 //----------------------------
 
 const Tab = createBottomTabNavigator();
@@ -38,8 +38,7 @@ function MyTabs({ route }) {
       {/*    TABS   START   */}
 
       <Tab.Screen
-        name="Perfil"
-        component={Perfil}
+        name="Perfil" component={Perfil}
         initialParams={{ idAluno: route.params.idAluno }}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -50,8 +49,7 @@ function MyTabs({ route }) {
       />
 
       <Tab.Screen
-        name="EditPerfil"
-        component={EditPerfil}
+        name="EditPerfil" component={EditPerfil}
         initialParams={{ idAluno: route.params.idAluno }}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -63,26 +61,24 @@ function MyTabs({ route }) {
       />
 
       <Tab.Screen
-        name="Início"
-        component={Home}
+        name="Início" component={Home}
         initialParams={{ idAluno: route.params.idAluno }}
         sceneContainerStyle={{ marginBottom: 15 }}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="home" size={24} color="black" />
           ),
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
 
       <Tab.Screen
-        name="AreaAluno"
-        component={AreaAluno}
+        name="AreaAluno" component={AreaAluno}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="book" size={24} color="black" />
           ),
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
 
@@ -93,37 +89,34 @@ function MyTabs({ route }) {
       {/*   CURSOS TABS   START  */}
 
       <Tab.Screen
-        name="Cursos"
-        component={Cursos} // vc estava mexendo aq
+        name="Cursos" component={Cursos} 
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="home" size={24} color="black" />
           ),
           tabBarButton: () => null,
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
       <Tab.Screen
-        name="SaibaMais"
-        component={SaibaMais} // vc estava mexendo aq
+        name="SaibaMais" component={SaibaMais} 
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="home" size={24} color="black" />
           ),
           tabBarButton: () => null,
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
 
       <Tab.Screen
-        name="Aula"
-        component={Aula}
+        name="Aula" component={Aula}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="home" size={24} color="black" />
           ),
           tabBarButton: () => null,
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
 
@@ -131,14 +124,13 @@ function MyTabs({ route }) {
       {/* ---------------------*/}
 
       <Tab.Screen
-        name="Produtos"
-        component={Produtos}
+        name="Produtos" component={Produtos}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name="home" size={24} color="black" />
           ),
           tabBarButton: () => null,
-          headerShown: false, // Este comando oculta o botão da aba
+          headerShown: false, 
         }}
       />
     </Tab.Navigator>
@@ -148,21 +140,24 @@ function MyTabs({ route }) {
 export default function Routes() {
   return (
     <Stack.Navigator>
+      {/* ------------------------------------- */}
+      {/* ---------------  Tabs ------------- */}
       <Stack.Screen name="Inicial"component={Inicial} options={{ headerShown: false }}/>
       <Stack.Screen name="EsqSenha" component={EsqSenha} options={{ headerShown: false }}/>
       <Stack.Screen name="Home" component={MyTabs} options={{ headerShown: false }}/>
       <Stack.Screen name="AreaAluno" component={AreaAluno} options={{ headerShown: false }}/>
       <Stack.Screen name="Produtos" component={Produtos} options={{ headerShown: false }}/>
       {/* ------------------------------------- */}
+      {/* ---------------  Perfil ------------- */}
+      <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }}/>
+      <Stack.Screen name="EditPerfil" component={EditPerfil} options={{ headerShown: false }}/>
+      {/* ------------------------------------- */}
       {/* ----------------  CURSOS ------------ */}
       <Stack.Screen name="Cursos" component={Cursos} options={{ headerShown: false }}/>
       <Stack.Screen name="SaibaMais" component={SaibaMais} options={{ headerShown: false }}/>
-      <Stack.Screen name="Aula" component={Aula} options={{ headerShown: false }}/>
       {/* ------------------------------------- */}
       {/* ----------------  AULAS ------------- */}
-      {/* ------------------------------------- */}
-      <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }}/>
-      <Stack.Screen name="EditPerfil" component={EditPerfil} options={{ headerShown: false }}/>
+      <Stack.Screen name="Aula" component={Aula} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }

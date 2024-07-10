@@ -523,19 +523,12 @@ export const styles = {
   // ------------------------------------
   // Aula START
   // ------------------------------------
-
   aulaImage: {
     width: 60,
     height: 60,
     borderRadius: 10,
   },
-  contVideo: {
-    flex: 1,
-    marginTop: 30,
-    justifyContent: "space-Around",
-    alignItems: "center",
-  },
-  video: {
+  aula: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -548,7 +541,27 @@ export const styles = {
     borderColor: "#ccc",
     borderRadius: 25,
   },
-
+  contAula: {
+    flex: 1,
+    marginTop: 30,
+    justifyContent: "space-Around",
+    alignItems: "center",
+  },
+  videoContainer: {
+    width: 340,
+    height: 240,
+    borderRadius: 10,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  Video: {
+    width: 340,
+    height: 240,
+    borderRadius: 25,
+    borderWidth: 4,
+    borderColor: "#3F4D42",
+  },
   // ------------------------------------
   // Aula end
   // ------------------------------------
@@ -558,7 +571,7 @@ export const styles = {
   profile: {
     flexDirection: "column",
   },
-  perfilImage:{
+  perfilImage: {
     width: 100,
     height: 100,
     borderRadius: 100,
@@ -627,7 +640,6 @@ export const styles = {
   // ------------------------------------
   // Perfil END
   // ------------------------------------
-
   imgFundoSenha: {
     width: "100%",
     height: 280,

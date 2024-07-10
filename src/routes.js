@@ -24,6 +24,7 @@ import SaibaMais from "./pages/cursos/saibaMais";
 //----------------------------
 // Aula
 import Aula from "./pages/aulas";
+import Video from "./pages/aulas/video";
 //----------------------------
 
 const Tab = createBottomTabNavigator();
@@ -119,6 +120,16 @@ function MyTabs({ route }) {
           headerShown: false, 
         }}
       />
+      <Tab.Screen
+        name="Video" component={Video}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Entypo name="home" size={24} color="black" />
+          ),
+          tabBarButton: () => null,
+          headerShown: false, 
+        }}
+      />
 
       {/*   CURSOS TABS   END  */}
       {/* ---------------------*/}
@@ -158,6 +169,7 @@ export default function Routes() {
       {/* ------------------------------------- */}
       {/* ----------------  AULAS ------------- */}
       <Stack.Screen name="Aula" component={Aula} options={{ headerShown: false }}/>
+      <Stack.Screen name="Video" component={Video} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }

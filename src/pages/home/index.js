@@ -63,13 +63,11 @@ export default function Home({ navigation, route }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.darkmode}
-              onPress={() => navigation.navigate("profile")}
-            >
+                style={styles.darkmode}
+                onPress={() => navigation.navigate("profile")}>
               <Image
                 style={styles.darkmodeIcon}
-                source={require("./../../img/icons/darkMode.png")}
-              />
+                source={require("./../../img/icons/darkMode.png")}/>
             </TouchableOpacity>
           </View>
         </View>

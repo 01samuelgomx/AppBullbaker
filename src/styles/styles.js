@@ -436,12 +436,76 @@ export const styles = {
   // ------------------------------------
   // Produtos START
   // ------------------------------------
-
-  blurContainer: {
+  produtos: {
+    marginTop: 50,
+    flexDirection: 'row',
+    width:'100%',
+    justifyContent: 'space-evenly',
+  },
+  contProdutos: {
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    justifyContent: "space-Around",
+    alignItems: "center",
+  },
+  produtoBtn: {
+    flex: 1,
+    flexDirection: "row",
+    width:155,
+    alignItems: "center",
+    padding: 10,
+  },
+  produtoItem: {
+    width: 200,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+  },
+
+  contProdutos: {
+    // flex: 1,
+    alignItems: 'center',
+    // width: 210,
+    borderWidth: 2,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    justifyContent: 'center',
+  },
+  produtoItem: {
+    // width: '80%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    // padding: 10,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+  },
+  produtoBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 145,
+    marginTop: 10,
+  },
+  btnItem: {
+    flex: 1,
+    width: 110,
+    justifyContent: "center",
+    justifyContent: "space-Around",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "#3F4D42",
+    borderRadius: 15,
   },
   modalView: {
     width: 300,
@@ -460,7 +524,7 @@ export const styles = {
   },
   modalText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "600",
   },
   modalDescription: {
     marginTop: 10,
@@ -477,46 +541,39 @@ export const styles = {
     color: "white",
     fontWeight: "bold",
   },
-  produtos: {
-    marginTop: 50,
-  },
-  contProdutos: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    justifyContent: "space-Around",
-    alignItems: "center",
-  },
-  produtoBtn: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
-  },
+
   btnItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#4CAF50',
+    width: 85,
+    borderRadius: 5,
+  },
+  centeredView: {
     flex: 1,
-    width: 110,
-    justifyContent: "center",
-    justifyContent: "space-Around",
-    alignItems: "center",
-    flexDirection: "row",
-    backgroundColor: "#3F4D42",
-    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  produtoItem: {
-    width: 200,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+  modalView: {
+    backgroundColor: '#fff',
     borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    elevation: 5,
   },
+  modalText: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 10,
+  },
+
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
   // ------------------------------------
   // Produtos END
   // ------------------------------------

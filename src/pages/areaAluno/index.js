@@ -1,25 +1,33 @@
 import React from "react";
-import { ScrollView,View, Image,Text, TouchableOpacity} from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { styles } from "../../styles/styles";
 
-const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
-  return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-      <Text style={[styles.text, textStyle]}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
+// const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
+//   return (
+//     <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
+//       <Text style={[styles.text, textStyle]}>{title}</Text>
+//     </TouchableOpacity>
+//   );
+// };
+const ImgBack = require("../../img/banner/areaAluno.png");
 
 export default function AreaAluno({ navigation }) {
   return (
-    <ScrollView style={{backgroundColor: '#fff'}}>
-    <View style={{ flexGrow: 1,alignItems: "center"}}>
-    
-    <Image
-       source={require("../../img/wave3.png")}
-      style={styles.waveImage}/>
+    <ScrollView style={{ backgroundColor: "#fff" }}>
+      <View style={{ flexGrow: 1, alignItems: "center" }}>
+        <Image
+          source={require("../../img/wave3.png")}
+          style={styles.waveImage}
+        />
 
-<View style={styles.header}>
+        <View style={styles.header}>
           <Image
             source={require("./../../img/logo.png")}
             style={styles.logoHome}
@@ -47,51 +55,70 @@ export default function AreaAluno({ navigation }) {
           </View>
         </View>
 
+        <View style={styles.banners}>
+          <ImageBackground
+            source={ImgBack}
+            style={{
+              width: "100%",
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 15,
+            }}
+          >
+            <View style={styles.bannerItem}>
+              <Text style={styles.bannerText}>Receitas Exclusivas</Text>
+              <Text style={styles.bannerSubText}>
+                Aproveite algumas receitas
+              </Text>
+            </View>
+          </ImageBackground>
+        </View>
 
-      <View style={styles.contAlunoBtn}>
+        <View style={styles.btnAreaAluno}>
+          <Image
+            style={styles.personAreaAluno}
+            source={require("./../../img/person/areaAluno.png")}
+          />
 
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Aproveite as melhores aulas!</Text>
+            <Text style={styles.subtitle}>
+              Para aproveitar as melhores receitas, assista as aulas do curso de
+              confeitaria!
+            </Text>
             <TouchableOpacity
-              style={styles.AcessoAula}
-              onPress={() => navigation.navigate("")}>
- 
-              <Image
-                source={require("./../../img/person/areaAluno.png")}
-                style={styles.waveImage}/>
+              style={styles.btnCursoUm}
+              onPress={() => navigation.navigate("Aula")}
+            >
+              <Text style={styles.buttonText}>Entrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <view>
+          <View>
+            <Text></Text>
+
+            <Image
+              style={styles.personAreaAluno}
+              source={require("./../../img/cakes/areaAluno.png")}
+            />
+
+            <View>
+              <View>
+                <Text>Ingredientes</Text>
+                <Text></Text>
+              </View>
 
               <View>
-                <Text style={styles.tittle}>Acesse suas Aulas</Text>
-
-                <CustomButton
-                  title="Confira"
-                  onPress={() => navigation.navigate('')}
-                  buttonStyle={styles.btnAula}
-                  textStyle={{ color: "#fff", fontWeight: '500' }}/>
-
+                <Text>Modo de preparo</Text>
+                <Text></Text>
               </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.AcessoPro}
-              onPress={() => navigation.navigate("")}>
- 
-              <Image
-                source={require("./../../img/icons/grafico.png")}
-                style={styles.waveImage}/>
-
-              <View>
-                <Text style={styles.tittle}>Acompanhe seu progresso</Text>
-
-                <CustomButton
-                  title="Confira"
-                  onPress={() => navigation.navigate('')}
-                  buttonStyle={styles.btnPro}
-                  textStyle={{ color: "#fff", fontWeight: '500' }}/>
-
-              </View>
-            </TouchableOpacity>
-
-        </View>
-        </View>
+            </View>
+          </View>
+        </view>
+      </View>
     </ScrollView>
   );
 }

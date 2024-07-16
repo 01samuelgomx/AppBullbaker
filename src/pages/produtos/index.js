@@ -98,7 +98,7 @@ export default function Produtos({ navigation }) {
 
           <View style={styles.contProdutos}>
             <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.produtoItem}>
-              <Image source={require("../../img/cakes/produto1.png")} />
+              <Image source={require("../../img/cakes/produto2.png")} />
               <Text style={{ fontWeight: "700", margin: 10 }}>Bolo Floresta</Text>
               <Text style={{ fontSize: 12, textAlign: "center", padding: 5, width: 165 }}>
                 O Bolo de Floresta Negra é perfeito para festas, unindo técnica, sabor e apresentação deslumbrante.
@@ -129,7 +129,7 @@ export default function Produtos({ navigation }) {
                   </View>
 
                   <Text style={styles.modalText}>Bolo Floresta</Text>
-                  <Image source={require("../../img/cakes/produto1.png")} 
+                  <Image source={require("../../img/cakes/produto2.png")} 
                   style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10 }} />
                   <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
                     Descrição detalhada do Bolo Floresta e suas características únicas.
@@ -149,11 +149,12 @@ export default function Produtos({ navigation }) {
           </View>
 
         </View>
+
         <View style={styles.produtos}>
 
         <View style={styles.contProdutos}>
             <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.produtoItem}>
-              <Image source={require("../../img/cakes/produto1.png")} />
+              <Image source={require("../../img/cakes/produto3.png")} />
               <Text style={{ fontWeight: "700", margin: 10 }}>Bolo Floresta</Text>
               <Text style={{ fontSize: 12, textAlign: "center", padding: 5, width: 165 }}>
                 O Bolo de Floresta Negra é perfeito para festas, unindo técnica, sabor e apresentação deslumbrante.
@@ -184,7 +185,7 @@ export default function Produtos({ navigation }) {
                   </View>
 
                   <Text style={styles.modalText}>Bolo Floresta</Text>
-                  <Image source={require("../../img/cakes/produto1.png")} 
+                  <Image source={require("../../img/cakes/produto3.png")} 
                   style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10 }} />
                   <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
                     Descrição detalhada do Bolo Floresta e suas características únicas.
@@ -205,7 +206,7 @@ export default function Produtos({ navigation }) {
 
           <View style={styles.contProdutos}>
             <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.produtoItem}>
-              <Image source={require("../../img/cakes/produto1.png")} />
+              <Image source={require("../../img/cakes/produto4.png")} />
               <Text style={{ fontWeight: "700", margin: 10 }}>Bolo Floresta</Text>
               <Text style={{ fontSize: 12, textAlign: "center", padding: 5, width: 165 }}>
                 O Bolo de Floresta Negra é perfeito para festas, unindo técnica, sabor e apresentação deslumbrante.
@@ -236,7 +237,115 @@ export default function Produtos({ navigation }) {
                   </View>
 
                   <Text style={styles.modalText}>Bolo Floresta</Text>
-                  <Image source={require("../../img/cakes/produto1.png")} 
+                  <Image source={require("../../img/cakes/produto4.png")} 
+                  style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10 }} />
+                  <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
+                    Descrição detalhada do Bolo Floresta e suas características únicas.
+                  </Text>
+
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <TouchableOpacity onPress={handleWhatsAppPress} style={styles.btnItem}>
+                      <Image source={require("../../img/whatsapp.png")} />
+                      <Text style={{ color: "#fff",fontSize: 12,fontWeight: "700" }}>Reservar</Text>
+                    </TouchableOpacity>
+                  </View>
+
+                </View>
+              </View>
+
+            </Modal>
+          </View>
+
+        </View>
+
+        <View style={styles.produtos}>
+
+        <View style={styles.contProdutos}>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.produtoItem}>
+              <Image source={require("../../img/cakes/produto4.png")} />
+              <Text style={{ fontWeight: "700", margin: 10 }}>Bolo Floresta</Text>
+              <Text style={{ fontSize: 12, textAlign: "center", padding: 5, width: 165 }}>
+                O Bolo de Floresta Negra é perfeito para festas, unindo técnica, sabor e apresentação deslumbrante.
+              </Text>
+
+              <View style={styles.produtoBtn}>
+                <Text>R$50,00</Text>
+                <TouchableOpacity onPress={handleWhatsAppPress} style={styles.btnItem}>
+                  <Image source={require("../../img/whatsapp.png")} />
+                  <Text style={{ color: "#fff", fontWeight: "700",fontSize:11 }}>Reservar</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(false)}>
+
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <TouchableOpacity onPress={() => setModalVisible(false)}>
+                      <AntDesign name="closecircleo" size={35} color="#1b507e" />
+                    </TouchableOpacity>
+                  </View>
+
+                  <Text style={styles.modalText}>Bolo Floresta</Text>
+                  <Image source={require("../../img/cakes/produto4.png")} 
+                  style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10 }} />
+                  <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
+                    Descrição detalhada do Bolo Floresta e suas características únicas.
+                  </Text>
+
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <TouchableOpacity onPress={handleWhatsAppPress} style={styles.btnItem}>
+                      <Image source={require("../../img/whatsapp.png")} />
+                      <Text style={{ color: "#fff", fontWeight: "700",fontSize:11 }}>Reservar</Text>
+                    </TouchableOpacity>
+                  </View>
+
+                </View>
+              </View>
+
+            </Modal>
+          </View>
+
+          <View style={styles.contProdutos}>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.produtoItem}>
+              <Image source={require("../../img/cakes/produto5.png")} />
+              <Text style={{ fontWeight: "700", margin: 10 }}>Bolo Floresta</Text>
+              <Text style={{ fontSize: 12, textAlign: "center", padding: 5, width: 165 }}>
+                O Bolo de Floresta Negra é perfeito para festas, unindo técnica, sabor e apresentação deslumbrante.
+              </Text>
+
+              <View style={styles.produtoBtn}>
+                <Text>R$50,00</Text>
+                <TouchableOpacity onPress={handleWhatsAppPress} style={styles.btnItem}>
+                  <Image source={require("../../img/whatsapp.png")} />
+                  <Text style={{ color: "#fff", fontWeight: "700",fontSize:11 }}>Reservar</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(false)}>
+
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <TouchableOpacity onPress={() => setModalVisible(false)}>
+                      <AntDesign name="closecircleo" size={35} color="#1b507e" />
+                    </TouchableOpacity>
+                  </View>
+
+                  <Text style={styles.modalText}>Bolo Floresta</Text>
+                  <Image source={require("../../img/cakes/produto5.png")} 
                   style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10 }} />
                   <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
                     Descrição detalhada do Bolo Floresta e suas características únicas.

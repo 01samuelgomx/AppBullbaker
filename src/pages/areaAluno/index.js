@@ -1,21 +1,7 @@
 import React from "react";
-import {
-  ScrollView,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../../styles/styles";
 
-// const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
-//   return (
-//     <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-//       <Text style={[styles.text, textStyle]}>{title}</Text>
-//     </TouchableOpacity>
-//   );
-// };
 const ImgBack = require("../../img/banner/areaAluno.png");
 
 export default function AreaAluno({ navigation }) {
@@ -96,28 +82,82 @@ export default function AreaAluno({ navigation }) {
           </View>
         </View>
 
-        <view>
-          <View>
-            <Text></Text>
+        {/* ---------------- */}
+        {/*     Receitas     */}
+        {/* ---------------- */}
 
-            <Image
-              style={styles.personAreaAluno}
-              source={require("./../../img/cakes/areaAluno.png")}
-            />
+        <View style={{marginTop: 50}}>
+          <View>
+            <View style={{padding: 10}}>
+            <Text style={styles.btnCursoDois}>Red velvet</Text>
+            </View>
 
             <View>
+              <Image source={require("./../../img/cakes/areaAluno.png")} />
+            </View>
+
+            <View style={styles.containerInfoReceita}>
               <View>
-                <Text>Ingredientes</Text>
-                <Text></Text>
+                <Text style={styles.tituloReceita}>Ingredientes</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkk </Text>
               </View>
 
               <View>
-                <Text>Modo de preparo</Text>
-                <Text></Text>
+                <Text style={styles.tituloReceita}>Modo de preparo</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
               </View>
+
             </View>
           </View>
-        </view>
+        </View>
+        <View style={{marginTop: 50}}>
+          <View>
+            <View style={{padding: 10}}>
+            <Text style={styles.btnCursoDois}>Red velvet</Text>
+            </View>
+
+            <View>
+              <Image source={require("./../../img/cakes/areaAluno.png")} />
+            </View>
+
+            <View style={styles.containerInfoReceita}>
+              <View>
+                <Text style={styles.tituloReceita}>Ingredientes</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkk </Text>
+              </View>
+
+              <View>
+                <Text style={styles.tituloReceita}>Modo de preparo</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+              </View>
+
+            </View>
+          </View>
+        </View>
+        <View style={{marginTop: 50}}>
+          <View>
+            <View style={{padding: 10}}>
+            <Text style={styles.btnCursoDois}>Red velvet</Text>
+            </View>
+
+            <View>
+              <Image source={require("./../../img/cakes/areaAluno.png")} />
+            </View>
+
+            <View style={styles.containerInfoReceita}>
+              <View>
+                <Text style={styles.tituloReceita}>Ingredientes</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkk </Text>
+              </View>
+
+              <View>
+                <Text style={styles.tituloReceita}>Modo de preparo</Text>
+                <Text style={styles.textoReceita}>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+              </View>
+
+            </View>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );

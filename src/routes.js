@@ -1,9 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { AntDesign, Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 //----------------------------
 // Routes
@@ -13,6 +11,7 @@ import EsqSenha from "./pages/esqSenha";
 import Home from "./pages/home";
 import AreaAluno from "./pages/areaAluno";
 import Produtos from "./pages/produtos";
+import Notificacao from "./pages/notificacao";
 //----------------------------
 // Perfil
 import Perfil from "./pages/perfil";
@@ -74,11 +73,22 @@ function MyTabs({ route }) {
       />
 
       <Tab.Screen
+        name="Notificacao" component={Notificacao}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="notifications" size={24} color="black" />
+          ),
+          headerShown: false, 
+        }}
+      />
+
+      <Tab.Screen
         name="AreaAluno" component={AreaAluno}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="book" size={24} color="black" />
+            <Ionicons name="notifications" size={24} color="black" />
           ),
+          tabBarButton: () => null,
           headerShown: false, 
         }}
       />

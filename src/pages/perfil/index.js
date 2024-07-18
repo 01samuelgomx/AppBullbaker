@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground, StyleSheet,} from "react-native";
+import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../../styles/styles";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,8 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 
-
-export default function EditPerfil({ navigation, route }) {
+export default function Perfil({ navigation, route }) {
   const { idAluno } = route.params || {};
 
   console.log("Cód Aluno: ", idAluno);
@@ -44,6 +43,9 @@ export default function EditPerfil({ navigation, route }) {
             },
           }
         );
+ console.log(resposta);
+ console.log(resposta.data.nome);
+
         setNomeAluno(resposta.data.dadosAluno.nome);
         setEmailAluno(resposta.data.dadosAluno.email);
         setTelefoneAluno(resposta.data.dadosAluno.telefone);
@@ -56,9 +58,7 @@ export default function EditPerfil({ navigation, route }) {
         setObjetivo(resposta.data.dadosAluno.objetivo);
         setstatusAluno(resposta.data.dadosAluno.status);
         setfotoAluno(resposta.data.dadosAluno.foto);
-      } 
-
-      catch (error) {
+      } catch (error) {
         console.log("Erro ao procurar dados do aluno.", error);
       }
     };
@@ -72,9 +72,19 @@ export default function EditPerfil({ navigation, route }) {
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <ImageBackground source={require("../../img/banner/perfil.png")}>
         <View style={styles.headerEdit}>
-          <Image
-            source={require("../../img/icons/perfil.png")}
-            style={styles.perfilImage}/>
+
+          {/* Verificação e exibição da foto do aluno */}
+          {fotoAluno ? (
+            <Image
+              source={{ uri: fotoAluno }}
+              style={styles.perfilImage}
+            />
+          ) : (
+            <Image
+              source={require("../../img/icons/perfil.png")}
+              style={styles.perfilImage}
+            />
+          )}
 
           <TouchableOpacity
             onPress={() => navigation.navigate("EditPerfil")}

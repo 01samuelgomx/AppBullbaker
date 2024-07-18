@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';

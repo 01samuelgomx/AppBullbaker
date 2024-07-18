@@ -61,7 +61,7 @@ function MyTabs({ route }) {
       />
 
       <Tab.Screen
-        name="Início" component={Home}
+        name="Home" component={Home}
         initialParams={{ idAluno: route.params.idAluno }}
         sceneContainerStyle={{ marginBottom: 15 }}
         options={{
@@ -162,7 +162,7 @@ export default function Routes() {
   return (
     <Stack.Navigator>
       {/* ------------------------------------- */}
-      {/* ---------------  Tabs ------------- */}
+      {/* ----------------  Tabs -------------- */}
       <Stack.Screen name="Inicial"component={Inicial} options={{ headerShown: false }}/>
       <Stack.Screen name="EsqSenha" component={EsqSenha} options={{ headerShown: false }}/>
       <Stack.Screen name="Home" component={MyTabs} options={{ headerShown: false }}/>

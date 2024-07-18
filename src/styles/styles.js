@@ -291,11 +291,11 @@ export const styles = {
     marginTop: 50,
     borderRadius: 20,
     backgroundColor: "#90A293",
-    borderWidth: 5,
+    borderWidth: 3,
     borderColor: "#747474",
     margin: 10,
     position: "relative",
-    bottom: -40,
+    bottom: -65,
     padding: 7,
   },
   personAreaAluno: {
@@ -304,7 +304,27 @@ export const styles = {
     elevation: 10,
     position: "absolute",
     left: -20,
-    top: -40,
+    top: -55,
+  },
+
+  btnReceita: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 180,
+    textAlign: "center",
+    fontSize: 13,
+    marginTop: 10,
+    padding: 3,
+    fontWeight: 700,
+    backgroundColor: "#4D636F",
+    color: "#fff",
+    borderRadius: 15,
+  },
+
+  imgReceita: {
+    width: 350,
+    height: 150,
+    borderRadius: 10,
   },
   textContainer: {
     flex: 1,
@@ -318,6 +338,7 @@ export const styles = {
   },
   tituloReceita: {
     fontSize: 12,
+    marginBottom: 10,
     color: "#000",
     fontWeight: "bold",
   },
@@ -327,6 +348,9 @@ export const styles = {
     fontWeight: "600",
     width: 160,
   },
+  containerReceita: {
+    marginTop: 20,
+  },
   containerInfoReceita: {
     flex: 1,
     flexDirection: "row",
@@ -335,18 +359,12 @@ export const styles = {
     alignItems: "center",
     justifyContent: "space-around",
     borderBottomWidth: 1,
-    paddingBottom: 40,
+    paddingBottom: 25,
   },
   subtitle: {
     color: "#fff",
     fontSize: 12,
     marginTop: 5,
-  },
-  btnCursoUm: {
-    marginTop: 10,
-    backgroundColor: "#000",
-    padding: 10,
-    borderRadius: 5,
   },
   buttonText: {
     color: "#fff",
@@ -524,14 +542,16 @@ export const styles = {
     backgroundColor: "white",
     borderRadius: 10,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "rgba(0, 0, 0, 0.2)",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    borderColor: "rgba(112, 112, 112, 0.3)",
+    borderWidth: 1,
   },
   modalText: {
     fontSize: 18,
@@ -564,15 +584,15 @@ export const styles = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
-  modalView: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
-    alignItems: "center",
-    elevation: 5,
-  },
+  // modalView: {
+  //   backgroundColor: "#fff",
+  //   borderRadius: 10,
+  //   padding: 20,
+  //   alignItems: "center",
+  //   elevation: 5,
+  // },
   modalText: {
     fontWeight: "bold",
     fontSize: 18,
@@ -643,6 +663,13 @@ export const styles = {
     width: 100,
     height: 100,
     borderRadius: 100,
+  },
+  btnEditPerfil: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    color: "#fff",
+    padding: 10,
   },
   textperfil: {
     flexDirection: "column",
@@ -728,24 +755,27 @@ export const styles = {
   // Notificacao Start
   // ------------------------------------
   ContainerNotificacao: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     margin: 15,
   },
 
   InputNotificacao: {
     flexDirection: "row",
     alignItems: "center",
-    width: 300,
+    borderWidth: 2,
+    borderColor: "#707070",
+    color: "#fff",
+    width: 360,
     padding: 15,
     borderRadius: 15,
-    // backgroundColor: "#90A293",
+    borderLeftWidth: 11,
+    borderLeftColor: "#3F4D42",
   },
 
   iconNotificacao: {
     width: 30,
     height: 30,
-    marginRight: 10,
   },
 
   itemNotificacao: {
@@ -758,18 +788,18 @@ export const styles = {
 
   contMsg: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
 
   tituloNotificacao: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
     marginBottom: 5,
   },
 
   mensagemNotificacao: {
-    fontSize: 14,
+    fontSize: 13,
   },
 
   // ------------------------------------

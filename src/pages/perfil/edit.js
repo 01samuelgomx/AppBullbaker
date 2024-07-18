@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from "react";
-import {
-  ScrollView,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  TextInput,
-  Alert,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground, TextInput } from "react-native";
 import { styles } from "../../styles/styles";
+import Modal from "react-native-modal";
 import axios from "axios";
-import * as ImagePicker from "expo-image-picker";
-import { Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import createAxiosInstance from "../../../api";
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+
+// Icons
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { AntDesign } from '@expo/vector-icons';
 
 export default function EditPerfil({ navigation, route }) {
   const { idAluno } = route.params || {};
+
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successModalVisible, setSuccessModalVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const [nomeAluno, setNomeAluno] = useState("");
   const [emailAluno, setEmailAluno] = useState("");
@@ -30,128 +33,114 @@ export default function EditPerfil({ navigation, route }) {
   const [dataDeNascimento, setDataDeNascimento] = useState("");
   const [objetivo, setObjetivo] = useState("");
   const [statusAluno, setStatusAluno] = useState("");
-  const [fotoAluno, setFotoAluno] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [fotoAluno, setFotoAluno] = useState(null);
 
   useEffect(() => {
-    const carregarTokenAluno = async () => {
+    const fetchAlunoData = async () => {
       try {
         const token = await AsyncStorage.getItem("userToken");
-        if (!token) {
-          Alert.alert(
-            "Erro",
-            "Token de autenticação não encontrado. Faça login novamente."
-          );
-          return;
-        }
-
-        const axiosInstance = await createAxiosInstance();
-        const resposta = await axiosInstance.get(`/edit/${idAluno}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const data = resposta.data;
-        setNomeAluno(data.nomeAluno);
-        setEmailAluno(data.emailAluno);
-        setTelefoneAluno(data.telefoneAluno);
-        setDataCadAluno(data.dataCadAluno);
-        setNivelHabilidade(data.nivelHabilidade);
-        setEstadoAluno(data.estadoAluno);
-        setNomeCurso(data.nomeCurso);
-        setIdCurso(data.idCurso);
-        setDataDeNascimento(data.dataDeNascimento);
-        setObjetivo(data.objetivo);
-        setStatusAluno(data.statusAluno);
-        setFotoAluno(data.fotoAluno);
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/update/${idAluno}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const aluno = response.data.aluno;
+        setNomeAluno(aluno.nomeAluno);
+        setEmailAluno(aluno.emailAluno);
+        setTelefoneAluno(aluno.telefoneAluno);
+        setDataCadAluno(aluno.dataCadAluno);
+        setNivelHabilidade(aluno.nivelHabilidade);
+        setEstadoAluno(aluno.estadoAluno);
+        setNomeCurso(aluno.nomeCurso);
+        setIdCurso(aluno.idCurso);
+        setDataDeNascimento(aluno.dataDeNascimento);
+        setObjetivo(aluno.objetivo);
+        setStatusAluno(aluno.statusAluno);
+        setFotoAluno(aluno.fotoAluno);
       } catch (error) {
-        console.log("Erro ao procurar dados do aluno.", error);
+        console.log("Erro ao procurar dados do aluno:", error);
+        setErrorMessage("Erro ao carregar dados do aluno");
+        setErrorModalVisible(true);
       }
     };
+
     if (idAluno) {
-      carregarTokenAluno();
+      fetchAlunoData();
     }
   }, [idAluno]);
 
-  const handlePickImage = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== "granted") {
-      Alert.alert(
-        "Permissão necessária",
-        "Precisamos da permissão para acessar suas fotos"
-      );
+  const selecionarImagem = async () => {
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert('Permissão para acessar a galeria é necessária!');
       return;
     }
 
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      base64: true
     });
 
-    if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
-      setFotoAluno(result.assets[0].uri); // Atualizando o estado da foto do aluno
+    if (pickerResult.cancelled === true) {
+      return;
     }
+
+    setFotoAluno(pickerResult.uri);
   };
 
   const salvar = async () => {
     try {
       const token = await AsyncStorage.getItem("userToken");
-      if (!token) {
-        console.log(
-          "Erro",
-          "Token de autenticação não encontrado. Faça login novamente."
-        );
-        return;
-      }
 
-      const axiosInstance = await createAxiosInstance();
-
-      const dadosAluno = {
-        nomeAluno,
-        emailAluno,
-        telefoneAluno,
-        dataCadAluno,
-        nivelHabilidade,
-        estadoAluno,
-        nomeCurso,
-        idCurso,
-        dataDeNascimento,
-        objetivo,
-        statusAluno,
+      let updatedData = {
+        nomeAluno: nomeAluno,
+        emailAluno: emailAluno,
+        telefoneAluno: telefoneAluno,
+        dataCadAluno: dataCadAluno,
+        nivelHabilidade: nivelHabilidade,
+        estadoAluno: estadoAluno,
+        nomeCurso: nomeCurso,
+        idCurso: idCurso,
+        dataDeNascimento: dataDeNascimento,
+        objetivo: objetivo,
+        statusAluno: statusAluno
       };
 
-      const formData = new FormData();
+      if (fotoAluno) {
+        const base64 = await FileSystem.readAsStringAsync(fotoAluno, { encoding: 'base64' });
+        updatedData.fotoAluno = `data:image/jpeg;base64,${base64}`;
+      }
 
-      for (const key in dadosAluno) {
-        if (Object.hasOwnProperty.call(dadosAluno, key)) {
-          formData.append(key, dadosAluno[key]);
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/update/${idAluno}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      }
+      );
 
-      if (selectedImage) {
-        formData.append("fotoAluno", {
-          uri: selectedImage,
-          type: "image/jpeg",
-          name: "foto.jpg",
-        });
-      }
+      setSuccessMessage("Dados atualizados com sucesso!");
+      setSuccessModalVisible(true);
 
-      await axiosInstance.post(`/update/${idAluno}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      Alert.alert("Sucesso", "Informações atualizadas com sucesso.");
-      navigation.navigate("Login");
+      setTimeout(() => {
+        setSuccessModalVisible(false);
+      }, 3000);
     } catch (error) {
-      console.error("Erro ao atualizar os dados do aluno:", error);
-      Alert.alert("Erro", "Não foi possível atualizar as informações.");
+      setErrorMessage("Erro ao salvar alterações!");
+      setErrorModalVisible(true);
+
+      setTimeout(() => {
+        setErrorModalVisible(false);
+      }, 3000);
+
+      console.log("Erro ao salvar alterações:", error);
     }
   };
 
@@ -161,19 +150,18 @@ export default function EditPerfil({ navigation, route }) {
         <View style={styles.headerEdit}>
           {fotoAluno ? (
             <Image
-              source={{ uri: selectedImage || fotoAluno }}
-              onError={(error) => console.log("Erro ao carregar imagem", error)}
+              source={{ uri: fotoAluno }}
               style={styles.perfilImage}
             />
           ) : (
-            <Text>Carregando Imagem...</Text>
+            <Image
+              source={require("../../img/icons/perfil.png")}
+              style={styles.perfilImage}
+            />
           )}
 
-          <TouchableOpacity onPress={handlePickImage}>
-            <Text style={styles.btnCursoUm}>
-              Perfil
-              <Entypo name="pencil" size={24} color="white" />
-            </Text>
+          <TouchableOpacity onPress={selecionarImagem} style={styles.btnCursoUm}>
+            <Text style={styles.buttonText}>Editar</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -192,100 +180,116 @@ export default function EditPerfil({ navigation, route }) {
 
       <View style={styles.ContainerPerfil}>
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Nome</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Nome"
-            value={nomeAluno}
-            onChangeText={setNomeAluno}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="user" size={24} color="black" /> Nome</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={nomeAluno} 
+            onChangeText={setNomeAluno} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Email</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Email"
-            value={emailAluno}
-            onChangeText={setEmailAluno}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><MaterialIcons name="email" size={24} color="black" /> Email</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={emailAluno} 
+            onChangeText={setEmailAluno} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Telefone</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Telefone"
-            value={telefoneAluno}
-            onChangeText={setTelefoneAluno}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="phone" size={24} color="black" /> Telefone</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={telefoneAluno} 
+            onChangeText={setTelefoneAluno} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Nome do Curso</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Nome do Curso"
-            value={nomeCurso}
-            onChangeText={setNomeCurso}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><Entypo name="book" size={24} color="black" /> Nome do Curso</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={nomeCurso} 
+            onChangeText={setNomeCurso} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Data de Cadastro</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Data de Cadastro"
-            value={dataCadAluno}
-            onChangeText={setDataCadAluno}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="calendar-check" size={24} color="black" /> Data de cadastro</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={dataCadAluno} 
+            onChangeText={setDataCadAluno} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Data de Nascimento</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Data de Nascimento"
-            value={dataDeNascimento}
-            onChangeText={setDataDeNascimento}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><Ionicons name="calendar-clear" size={24} color="black" /> Data de Nascimento</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={dataDeNascimento} 
+            onChangeText={setDataDeNascimento} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Estado</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Estado"
-            value={estadoAluno}
-            onChangeText={setEstadoAluno}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><AntDesign name="linechart" size={24} color="black" /> Nível de Habilidade</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={nivelHabilidade} 
+            onChangeText={setNivelHabilidade} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Nível de Habilidade</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Nível de Habilidade"
-            value={nivelHabilidade}
-            onChangeText={setNivelHabilidade}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><Ionicons name="location" size={24} color="black" /> Estado</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={estadoAluno} 
+            onChangeText={setEstadoAluno} 
           />
         </View>
 
         <View style={styles.contInput}>
-          <Text style={{ fontWeight: "700", marginTop: 14 }}>Objetivo</Text>
-          <TextInput
-            style={styles.inputPerfil}
-            placeholder="Objetivo"
-            value={objetivo}
-            onChangeText={setObjetivo}
+          <Text style={{ fontWeight: "700", marginTop: 14 }}><FontAwesome name="bullseye" size={24} color="black" /> Objetivo</Text>
+          <TextInput 
+            style={styles.inputPerfil} 
+            value={objetivo} 
+            onChangeText={setObjetivo} 
           />
         </View>
 
-        <TouchableOpacity onPress={salvar} style={styles.btnCursoUm}>
-          Enviar
+        <TouchableOpacity onPress={salvar} style={styles.btnEditPerfil}>
+          <Text style={styles.btnCursoUm}>Salvar</Text>
         </TouchableOpacity>
-        <Text style={{ padding: 20, color: "#fff" }}>.</Text>
       </View>
+
+      {/* Modal de Erro */}
+      <Modal isVisible={errorModalVisible}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: 230, height: 190, padding: 15, justifyContent: 'space-around', borderRadius: 20 }}>
+            <MaterialIcons name="error" size={60} color="#c02020" />
+            <Text>{errorMessage}</Text>
+            <TouchableOpacity onPress={() => setErrorModalVisible(false)}>
+              <Text style={{ backgroundColor: '#361F08', borderRadius: 10, color: '#fff', padding: 8 }}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal de Sucesso */}
+      <Modal isVisible={successModalVisible}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', width: 230, height: 190, padding: 15, justifyContent: 'space-around', borderRadius: 20 }}>
+            <AntDesign name="checkcircle" size={60} color="#06bc68" />
+            <Text>{successMessage}</Text>
+            <TouchableOpacity onPress={() => setSuccessModalVisible(false)}>
+              <Text style={{ backgroundColor: '#361F08', borderRadius: 10, color: '#fff', padding: 8 }}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }

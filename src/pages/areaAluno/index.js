@@ -98,12 +98,11 @@ export default function AreaAluno({ navigation }) {
               Para aproveitar as melhores receitas, assista as aulas do curso de
               confeitaria!
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.btnCursoUm}
-              onPress={() => navigation.navigate("Aula")}
-            >
+                 onPress={() => navigation.navigate("Aula")}>
               <Text style={styles.buttonText}>Entrar</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
 
@@ -124,12 +123,12 @@ export default function AreaAluno({ navigation }) {
               </View>
 
               <View style={styles.containerInfoReceita}>
-                <View>
+                <View style={{width: 150}}>
                   <Text style={styles.tituloReceita}>Ingredientes</Text>
                   <Text style={styles.textoReceita}>{item.ingredienteReceita}</Text>
                 </View>
 
-                <View>
+                <View style={{width: 150}}>
                   <Text style={styles.tituloReceita}>Modo de preparo</Text>
                   <Text style={styles.textoReceita}>{item.modoPreparoReceita}</Text>
                 </View>

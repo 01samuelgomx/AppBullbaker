@@ -295,7 +295,7 @@ export const styles = {
     borderColor: "#747474",
     margin: 10,
     position: "relative",
-    bottom: -65,
+    bottom: -96,
     padding: 7,
   },
   personAreaAluno: {
@@ -304,7 +304,7 @@ export const styles = {
     elevation: 10,
     position: "absolute",
     left: -20,
-    top: -55,
+    top: -94,
   },
 
   btnReceita: {
@@ -329,7 +329,7 @@ export const styles = {
   textContainer: {
     flex: 1,
     padding: 8,
-    marginLeft: 127,
+    marginLeft: 113,
   },
   title: {
     fontSize: 15,
@@ -356,7 +356,8 @@ export const styles = {
     flexDirection: "row",
     width: "100%",
     marginTop: 15,
-    alignItems: "center",
+    alignItems: "flex-start", 
+    justifyContent: "center",
     justifyContent: "space-around",
     borderBottomWidth: 1,
     paddingBottom: 25,
@@ -781,7 +782,6 @@ export const styles = {
   itemNotificacao: {
     width: 30,
     height: 30,
-    // backgroundColor: "#3F4D42",
     borderRadius: 15,
     marginRight: 10,
   },

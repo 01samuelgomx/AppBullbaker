@@ -44,6 +44,7 @@ const slides = [
 ];
 
 export default function App({ navigation }) {
+  
   const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');

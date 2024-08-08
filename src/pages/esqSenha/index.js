@@ -21,6 +21,7 @@ const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
 };
 
 export default function EsqSenha({ navigation }) {
+  
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.dashView}>

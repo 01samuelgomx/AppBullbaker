@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function SaibaMais({ route, navigation }) {
+  
   const { idCurso } = route.params;
   const [curso, setCurso] = useState(null);
 

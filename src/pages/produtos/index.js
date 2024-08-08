@@ -4,6 +4,7 @@ import { styles } from "../../styles/styles";
 import { AntDesign } from '@expo/vector-icons';
 
 export default function Produtos({ navigation }) {
+  
   const [modalVisible, setModalVisible] = useState(false);
   const ImgBack = require("../../img/banner/pagamento.png");
 

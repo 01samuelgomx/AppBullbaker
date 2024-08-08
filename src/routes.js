@@ -1,8 +1,10 @@
 import React from "react";
+import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Entypo } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons,Octicons } from "@expo/vector-icons"; // Importando ícones corretamente
+import { styles } from "./styles/styles"; // Corrigido o caminho da importação dos estilos
+
 //----------------------------
 // Routes
 //----------------------------
@@ -32,62 +34,94 @@ const Stack = createStackNavigator();
 function MyTabs({ route }) {
   console.log("idAluno:", route.params.idAluno);
   return (
-    <Tab.Navigator screenOptions={{ tabBarStyle: { borderWidth: 0 } }}>
-      
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          padding: 15,
+          borderWidth: 0,
+          backgroundColor: '#fff',
+          borderTopWidth: 3,
+          borderColor: '#361F08',
+        },
+      }}
+    >
       {/* ----------------------- */}
       {/*    TABS   START   */}
-
       <Tab.Screen
-        name="Perfil" component={Perfil}
+        name="Perfil"
+        component={Perfil}
         initialParams={{ idAluno: route.params.idAluno }}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="settings" size={24} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <View style={[styles.iconContainer, { backgroundColor: focused ? '#fff' : 'transparent' }]}>
+              {focused ? (
+               <MaterialCommunityIcons name="heart" size={28} color="#361F08"  />
+              ) : (
+                <MaterialCommunityIcons name="cards-heart-outline" size={28} color="#361F08"   />
+              )}
+            </View>
           ),
+          tabBarLabel: () => null, 
           headerShown: false,
         }}
       />
 
       <Tab.Screen
-        name="EditPerfil" component={EditPerfil}
-        initialParams={{ idAluno: route.params.idAluno }}
+        name="Home"
+        component={Home}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="settings" size={24} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <View style={[styles.iconContainer, { backgroundColor: focused ? '#fff' : 'transparent' }]}>
+              {focused ? (
+                <MaterialCommunityIcons name="home-variant" size={28} color="#361F08" />
+              ) : (
+                <Octicons name="home" size={28} color="#361F08" />
+              )}
+            </View>
           ),
+          tabBarLabel: () => null, // Não mostra o nome da aba
           headerShown: false,
-          tabBarButton: () => null,
         }}
       />
 
       <Tab.Screen
-        name="Home" component={Home}
-        initialParams={{ idAluno: route.params.idAluno }}
-        sceneContainerStyle={{ marginBottom: 15 }}
+        name="Notificacao"
+        component={Notificacao}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <View style={[styles.iconContainer, { backgroundColor: focused ? '#fff' : 'transparent' }]}>
+              {focused ? (
+               <Ionicons name="notifications" size={28} color="#361F08" />
+              ) : (
+                <Ionicons name="notifications-outline" size={28} color="#361F08" />
+              )}
+            </View>
           ),
-          headerShown: false, 
+          tabBarLabel: () => null,
+          headerShown: false,
         }}
       />
 
-      <Tab.Screen
-        name="Notificacao" component={Notificacao}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="notifications" size={24} color="black" />
-          ),
-          headerShown: false, 
-        }}
-      />
+        <Tab.Screen
+          name="EditPerfil"
+          component={EditPerfil}
+          initialParams={{ idAluno: route.params.idAluno }}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="settings" size={28} color={color} />
+            ),
+            headerShown: false,
+            tabBarButton: () => null, // Oculta a aba
+          }}
+        />
 
       <Tab.Screen
         name="AreaAluno" component={AreaAluno}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Ionicons name="notifications" size={24} color="black" />
+            <Ionicons name="notifications" size={28} color="black" />
           ),
+          tabBarLabel: () => null, 
           tabBarButton: () => null,
           headerShown: false, 
         }}
@@ -103,7 +137,7 @@ function MyTabs({ route }) {
         name="Cursos" component={Cursos} 
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={28} color="black" />
           ),
           tabBarButton: () => null,
           headerShown: false, 
@@ -113,7 +147,7 @@ function MyTabs({ route }) {
         name="SaibaMais" component={SaibaMais} 
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={28} color="black" />
           ),
           tabBarButton: () => null,
           headerShown: false, 
@@ -124,7 +158,7 @@ function MyTabs({ route }) {
         name="Aula" component={Aula}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={28} color="black" />
           ),
           tabBarButton: () => null,
           headerShown: false, 
@@ -134,7 +168,7 @@ function MyTabs({ route }) {
         name="Video" component={Video}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={28} color="black" />
           ),
           tabBarButton: () => null,
           headerShown: false, 
@@ -148,7 +182,7 @@ function MyTabs({ route }) {
         name="Produtos" component={Produtos}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={28} color="black" />
           ),
           tabBarButton: () => null,
           headerShown: false, 

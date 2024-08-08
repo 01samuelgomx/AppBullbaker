@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome6 } from '@expo/vector-icons';
 
 export default function Aula({ navigation,route }) {
+  
   const { idCurso } = route.params;
   const [aulas, setAulas] = useState([]);
   const [loading, setLoading] = useState(true);

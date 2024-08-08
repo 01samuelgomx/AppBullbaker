@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const ImgBack = require("../../img/banner/areaAluno.png");
 
 export default function AreaAluno({ navigation }) {
+  
   const [receita, setReceita] = useState([]);
 
   useEffect(() => {

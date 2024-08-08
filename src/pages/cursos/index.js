@@ -11,6 +11,7 @@ const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => (
 );
 
 export default function Cursos({ navigation }) {
+  
   const [cursos, setCursos] = useState([]);
 
   useEffect(() => {

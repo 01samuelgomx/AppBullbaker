@@ -7,6 +7,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
 
 export default function Video({ navigation, route }) {
+  
   // Extraímos o idCurso dos parâmetros da rota
   const { idCurso } = route.params;
   

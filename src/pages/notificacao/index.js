@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Image, Text, TouchableOpacity } from "react-native";
+import { ScrollView, View, Image, Text, TouchableOpacity, Modal } from "react-native";
 import { styles } from "../../styles/styles";
 import axios from "axios";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// const ImgBack = require("../../img/banner/areaAluno.png");
-
 export default function Notificacao({ navigation }) {
-  
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedNotificacao, setSelectedNotificacao] = useState(null);
   const [notificacao, setNotificacao] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ export default function Notificacao({ navigation }) {
         });
 
         console.log(resposta.data.NotificacoesAtivas);
-        // Inverte a ordem das notificações
         setNotificacao(resposta.data.NotificacoesAtivas.reverse());
       } catch (error) {
         console.log("Erro ao procurar dados das notificações.", error);
@@ -30,6 +29,16 @@ export default function Notificacao({ navigation }) {
 
     fetchNotificacaoData();
   }, []);
+
+  const handleOpenModal = (notificacaoItem) => {
+    setSelectedNotificacao(notificacaoItem);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedNotificacao(null);
+  };
 
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
@@ -48,12 +57,7 @@ export default function Notificacao({ navigation }) {
             <TouchableOpacity
               style={styles.profile}
               onPress={() => navigation.navigate("Perfil")}
-            >
-              {/* <Image
-              style={styles.logoCursos}
-              source={require("./../../img/icons/user.png")}
-            /> */}
-            </TouchableOpacity>
+            ></TouchableOpacity>
 
             <TouchableOpacity
               style={styles.darkmode}
@@ -70,7 +74,7 @@ export default function Notificacao({ navigation }) {
         {/* Listagem das notificações */}
         {notificacao.map((item) => (
           <View key={item.id} style={styles.ContainerNotificacao}>
-            <View style={styles.InputNotificacao}>
+            <TouchableOpacity onPress={() => handleOpenModal(item)} style={styles.InputNotificacao}>
               <Image
                 style={styles.iconNotificacao}
                 source={{ uri: item.fotoNotificacao }}
@@ -80,13 +84,38 @@ export default function Notificacao({ navigation }) {
               <View style={styles.contMsg}>
                 <Text style={styles.tituloNotificacao}>{item.tituloNotificacao}</Text>
                 <Text style={styles.mensagemNotificacao}>
-                  {item.mensagemNotificacao}
+                 Nova mensagem!
                 </Text>
               </View>
               <Image source={require("./../../img/icons/notificacao.png")} />
-            </View>
+            </TouchableOpacity>
           </View>
         ))}
+
+        {/* Modal para a notificação selecionada */}
+        {selectedNotificacao && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={handleCloseModal}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                  <TouchableOpacity onPress={handleCloseModal}>
+                    <FontAwesome name="close" size={24} color="black" />
+                  </TouchableOpacity>
+                </View>
+
+                <Text style={styles.tituloNotificacao}>{selectedNotificacao.tituloNotificacao}</Text>
+                <Text style={{ textAlign: "center", marginVertical: 10, width: 260 }}>
+                  {selectedNotificacao.mensagemNotificacao}
+                </Text>
+              </View>
+            </View>
+          </Modal>
+        )}
       </View>
     </ScrollView>
   );

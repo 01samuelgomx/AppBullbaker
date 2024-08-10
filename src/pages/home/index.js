@@ -43,7 +43,7 @@ export default function Home({ navigation, route }) {
     <View style={{ flexGrow: 1,alignItems: "center"}}>
     
     <Image
-       source={require("../../img/wave1.png")}
+       source={require("../../img/wave2.png")}
       style={styles.waveImage}/>
 
 <View style={styles.header}>

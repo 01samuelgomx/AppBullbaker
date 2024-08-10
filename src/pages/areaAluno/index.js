@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, Image, Text, TouchableOpacity, ImageBackground } from "react-native";
+import { ScrollView, View, Image, Text, TouchableOpacity, Modal, ImageBackground } from "react-native";
 import { styles } from "../../styles/styles";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FontAwesome } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const ImgBack = require("../../img/banner/areaAluno.png");
 
 export default function AreaAluno({ navigation }) {
-  
   const [receita, setReceita] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedReceita, setSelectedReceita] = useState(null);
 
   useEffect(() => {
     const fetchReceitaData = async () => {
@@ -20,8 +23,6 @@ export default function AreaAluno({ navigation }) {
           },
         });
 
-        console.log(resposta.data.ReceitasAtivas);
-        // Inverte a ordem das receitas
         setReceita(resposta.data.ReceitasAtivas.reverse());
       } catch (error) {
         console.log("Erro ao procurar dados das receitas.", error);
@@ -31,11 +32,21 @@ export default function AreaAluno({ navigation }) {
     fetchReceitaData();
   }, []);
 
+  const openModal = (item) => {
+    setSelectedReceita(item);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedReceita(null);
+  };
+
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <View style={{ flexGrow: 1, alignItems: "center" }}>
         <Image
-          source={require("../../img/wave3.png")}
+          source={require("../../img/wave2.png")}
           style={styles.waveImage}
         />
 
@@ -48,13 +59,7 @@ export default function AreaAluno({ navigation }) {
             <TouchableOpacity
               style={styles.profile}
               onPress={() => navigation.navigate("Perfil")}
-            >
-              {/* <Image
-              style={styles.logoCursos}
-              source={require("./../../img/icons/user.png")}
-            /> */}
-            </TouchableOpacity>
-
+            />
             <TouchableOpacity
               style={styles.darkmode}
               onPress={() => navigation.navigate("profile")}
@@ -94,48 +99,69 @@ export default function AreaAluno({ navigation }) {
           />
 
           <View style={styles.textContainer}>
-            <Text style={styles.title}>Aproveite as melhores aulas!</Text>
-            <Text style={styles.subtitle}>
+            <Text style={styles.titleReceita}>Aproveite as melhores aulas!</Text>
+            <Text style={styles.subtitleReceita}>
               Para aproveitar as melhores receitas, assista as aulas do curso de
               confeitaria!
             </Text>
-            {/* <TouchableOpacity
-              style={styles.btnCursoUm}
-                 onPress={() => navigation.navigate("Aula")}>
-              <Text style={styles.buttonText}>Entrar</Text>
-            </TouchableOpacity> */}
           </View>
         </View>
 
-        {/* ---------------- */}
-        {/*     Receitas     */}
-        {/* ---------------- */}
-
-        <View style={{ marginTop: 80 }}>
-          {/* Faça a listagem acontecer neste container! */}
+        <View style={{ marginTop: 100 }}>
           {receita.map((item) => (
-            <View key={item.id} style={styles.containerReceita}>
-              <View style={{ padding: 10 }}>
-                <Text style={styles.btnReceita}>{item.nomeReceita}</Text>
+            <View key={item.id} style={styles.receita}>
+              <Image source={{ uri: item.fotoReceita }} style={styles.imgReceita} />
+              <View style={{ padding: 20, width: 215 }}>
+                <Text style={styles.cursoTittle}>{item.nomeReceita}</Text>
+                <Text style={styles.cursoText}>Confira nossa Receita!</Text>
               </View>
 
-              <View>
-                <Image style={styles.imgReceita} source={{ uri: item.fotoReceita }} />
-              </View>
-
-              <View style={styles.containerInfoReceita}>
-                <View style={{width: 150}}>
-                  <Text style={styles.tituloReceita}>Ingredientes</Text>
-                  <Text style={styles.textoReceita}>{item.ingredienteReceita}</Text>
-                </View>
-
-                <View style={{width: 150}}>
-                  <Text style={styles.tituloReceita}>Modo de preparo</Text>
-                  <Text style={styles.textoReceita}>{item.modoPreparoReceita}</Text>
-                </View>
-              </View>
+              {/* Botão que abre o modal */}
+              <TouchableOpacity onPress={() => openModal(item)} style={styles.btnReceita}>
+                <MaterialCommunityIcons name="arrow-right-bold" size={24} color="white" />
+              </TouchableOpacity>
             </View>
           ))}
+
+          {selectedReceita && (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={closeModal}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <TouchableOpacity onPress={closeModal}>
+                      <FontAwesome name="close" size={24} color="black" />
+                    </TouchableOpacity>
+                  </View>
+
+                  <Image source={{ uri: selectedReceita.fotoReceita }} style={styles.imgReceita} />
+                  <Text style={styles.modalText}>{selectedReceita.nomeReceita}</Text>
+
+                  <View style={styles.infoReceita}>
+                    
+                    <View style={styles.itemReceita}>
+                      <Text style={styles.titleReceita}>Modo de Preparo</Text>
+                      <Text style={{maxWidth: 140}}>
+                        {selectedReceita.modoPreparoReceita}
+                      </Text>
+                    </View>
+
+                    <View style={styles.itemReceita}>
+                      <Text style={styles.titleReceita}>Ingredientes</Text>
+                      <Text style={{maxWidth: 140}}>
+                        {selectedReceita.ingredienteReceita}
+                      </Text>
+                    </View>
+
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          )}
         </View>
       </View>
     </ScrollView>
